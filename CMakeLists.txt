@@ -24,12 +24,13 @@ set(VERSION_MINOR 2)
 set(VERSION_PATCH 0)
 
 find_path(CLASP_INCLUDE_PATH clasp/clasp.h DOC "The include directory of clasp")
-find_path(EXTERNALS_CLASP_PATH gc_cpp.h DOC "The directory of externals-clasp")
+find_path(CLASP_LIB_PATH libclasp-clbind.so DOC "The lib path of clasp")
+#find_path(EXTERNALS_CLASP_PATH gc_cpp.h DOC "The directory of externals-clasp")
 
 # add the SFML header path
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
   ${CLASP_INCLUDE_PATH}
-  ${EXTERNALS_CLASP_PATH}/build/common/include
+  #${EXTERNALS_CLASP_PATH}/build/common/include
   #/home/flash/dev/externals-clasp/build/common/include
   #/home/flash/dev/clasp-src/include
   )
@@ -38,13 +39,13 @@ add_compile_options(-std=c++11
    -v 
    -fPIC
    -D_TARGET_OS_LINUX
+   -DX86
    -DNDEBUG
    -DUSE_BOEHM
+   -DUSE_ALLOCA_FOR_FRAME
    -D_ADDRESS_MODEL_64
    -Wl,--start-group
-   /home/flash/dev/clasp-src/src/gctools/bin/boehm/clasp/clang-linux-3.6.2/release/link-static/libgctools.a
-   /home/flash/dev/clasp-src/src/core/bin/boehm/clasp/clang-linux-3.6.2/release/link-static/libcore.a
-   /home/flash/dev/clasp-src/src/clbind/bin/boehm/clasp/clang-linux-3.6.2/release/link-static/libclbind.a
+   ${CLASP_LIB_PATH}/libclasp-clbind.so
    -Wl,--end-group)
 
 # add an option for choosing the build type (shared or static)

@@ -1,7 +1,7 @@
 #include <CLASP-SFML/translators.hpp>
 
 #include <CLASP-SFML/System/String.hpp>
-
+#include <CLASP-SFML/System/Vector2.hpp>
 #include <CLASP-SFML/Window/Event.hpp>
 #include <CLASP-SFML/Window/VideoMode.hpp>
 
@@ -1233,7 +1233,7 @@ extern "C" {
 	   // ,
 	   // class_<sf::Transformable> ("transformable")
 	   ,
-	   class_<sf::Sprite,sf::Drawable> ("sprite")
+	   class_<sf::Sprite, bases<sf::Drawable,sf::Transformable>> ("sprite")
 	   //. def_constructor("make-sprite", constructor<>())
 	   . def_constructor("make-sprite", constructor<const sf::Texture &>())
 	   //. def_constructor("make-sprite", constructor<const sf::Texture &, const sf::IntRect &>())

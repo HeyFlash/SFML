@@ -21,6 +21,21 @@ namespace translate
     }
   };
 
+  
+  template <>
+  struct to_object<sf::Keyboard::Key, adopt_pointer>
+  {
+    static core::T_sp convert(sf::Keyboard::Key v)
+    {
+      core::Symbol_sp converterSym = 
+        core::lisp_intern("*KEYBOARD-KEY-ENUM-MAPPER*", "SFML");
+      core::SymbolToEnumConverter_sp converter = 
+        converterSym->symbolValue().as<core::SymbolToEnumConverter_O>();
+      return converter->symbolForEnum<sf::Keyboard::Key>(v);
+    }
+  };
+
+  
   template <>
   struct from_object<sf::Keyboard::Key>
   {

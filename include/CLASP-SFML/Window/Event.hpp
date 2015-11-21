@@ -19,6 +19,18 @@ namespace translate
     }
   };
 
+ 
+  template <>
+  struct to_object<sf::Event::EventType, adopt_pointer>
+  {
+    static core::T_sp convert(sf::Event::EventType v)
+    {
+      core::Symbol_sp converterSym = core::lisp_intern("*EVENT-EVENTTYPE-ENUM-MAPPER*", "SFML");
+      core::SymbolToEnumConverter_sp converter = converterSym->symbolValue().as<core::SymbolToEnumConverter_O>();
+      return converter->symbolForEnum<sf::Event::EventType>(v);
+    }
+  };
+  
   template <>
   struct from_object<sf::Event::EventType>
   {

@@ -1,5 +1,14 @@
 #+OPTIONS: H:2
 
+* Important Notice
+This is a fork of SFML that was used to test binding C++ libraries from clasp. It is still here for archival purpopses, but is not of any real use.
+
+If you are looking for the clasp binding for SFML, go to https://github.com/clasp-developers/clasp-sfml.
+
+If you are looking for the SFML library, go to http://www.sfml-dev.org/.
+
+And now for the rest of the original readme:
+
 * What is this?
 This fork of SFML contains some early test bindings for accessing SFML from clasp
 

@@ -789,19 +789,7 @@ extern "C" {
 	   class_<sf::Event>("event")
 	   . def_constructor("make-event",constructor<>())
 	   //. def_readonly("type", &sf::Event::type)
-	   .def("get-type", &sf::Event::getType)
-	   .def_readonly("type", &sf::Event::type)
-	   .def("get-size-event", &sf::Event::getSizeEvent)                       
-	   .def("get-key-event", &sf::Event::getKeyEvent)                         
-	   .def("get-text-event", &sf::Event::getTextEvent)                       
-	   .def("get-mouse-move-event", &sf::Event::getMouseMoveEvent)             
-	   .def("get-mouse-button-event", &sf::Event::getMouseButtonEvent)         
-	   .def("get-mouse-wheel-event", &sf::Event::getMouseWheelEvent)           
-	   .def("get-joystick-move-event", &sf::Event::getJoystickMoveEvent)       
-	   .def("get-joystick-button-event", &sf::Event::getJoystickButtonEvent)   
-	   .def("get-joystick-connect-event", &sf::Event::getJoystickConnectEvent) 
-	   .def("get-touch-event", &sf::Event::getTouchEvent)                     
-	   .def("get-sensor-event", &sf::Event::getSensorEvent)                      
+	   
 	   . enum_<sf::Event::EventType>(core::lisp_intern("*EVENT-EVENTTYPE-ENUM-MAPPER*", "SFML"))
 	   [ value("Closed",sf::Event::EventType::Closed) 
 	     , value("Resized",sf::Event::EventType::Resized)                
@@ -827,6 +815,70 @@ extern "C" {
 	     , value("SensorChanged",sf::Event::EventType::SensorChanged)          
 	     , value("Count",sf::Event::EventType::Count)
 	   ]
+	   .def_readonly("type", &sf::Event::type)
+	   .def_readonly("size", &sf::Event::size)
+	   .def_readonly("key", &sf::Event::key)
+	   .def_readonly("text", &sf::Event::text)
+	   .def_readonly("mouse-move", &sf::Event::mouseMove)
+	   .def_readonly("mouse-button", &sf::Event::mouseButton)
+	   .def_readonly("mouse-wheel", &sf::Event::mouseWheel)
+	   .def_readonly("joystick-move", &sf::Event::joystickMove)
+	   .def_readonly("joystick-button", &sf::Event::joystickButton)
+	   .def_readonly("joystick-connect", &sf::Event::joystickConnect)
+	   .def_readonly("touch", &sf::Event::touch)
+	   .def_readonly("sensor", &sf::Event::sensor)
+
+	   ,class_<sf::Event::SizeEvent>("event-size-event")
+	   .def_readonly("width", &sf::Event::SizeEvent::width)
+	   .def_readonly("height", &sf::Event::SizeEvent::height)
+	   
+	   ,class_<sf::Event::KeyEvent>("event-key-event")
+	   .def_readonly("code", &sf::Event::KeyEvent::code)
+	   .def_readonly("alt", &sf::Event::KeyEvent::alt)
+	   .def_readonly("control", &sf::Event::KeyEvent::control)
+	   .def_readonly("shift", &sf::Event::KeyEvent::shift)
+	   .def_readonly("system", &sf::Event::KeyEvent::system)
+	   
+	   ,class_<sf::Event::TextEvent>("event-text-event")
+	   .def_readonly("unicode", &sf::Event::TextEvent::unicode)
+	   
+	   ,class_<sf::Event::MouseMoveEvent>("event-mouse-move-event")
+	   .def_readonly("x-mouse-move-event", &sf::Event::MouseMoveEvent::x)
+	   .def_readonly("y-mouse-move-event", &sf::Event::MouseMoveEvent::y)
+	   
+	   ,class_<sf::Event::MouseButtonEvent>("event-mouse-button-event")
+	   .def_readonly("button", &sf::Event::MouseButtonEvent::button)
+	   .def_readonly("x-mouse-button-event", &sf::Event::MouseButtonEvent::x)
+	   .def_readonly("y-mouse-button-event", &sf::Event::MouseButtonEvent::y)
+	   
+	   ,class_<sf::Event::MouseWheelEvent>("event-mouse-wheel-event")
+	   .def_readonly("delta", &sf::Event::MouseWheelEvent::delta)
+	   .def_readonly("x-mouse-wheel-event", &sf::Event::MouseWheelEvent::x)
+	   .def_readonly("y-mouse-wheel-event", &sf::Event::MouseWheelEvent::y)
+	   
+	   ,class_<sf::Event::JoystickConnectEvent>("event-joystick-connect-event")
+	   .def_readonly("joystick-id", &sf::Event::JoystickConnectEvent::joystickId)
+	   
+	   ,class_<sf::Event::JoystickMoveEvent>("event-joystick-move-event")
+	   .def_readonly("joystick-id", &sf::Event::JoystickMoveEvent::joystickId)
+	   .def_readonly("axis", &sf::Event::JoystickMoveEvent::axis)
+	   .def_readonly("position", &sf::Event::JoystickMoveEvent::position)
+	   
+	   ,class_<sf::Event::JoystickButtonEvent>("event-joystick-button-event")
+	   .def_readonly("joystick-id", &sf::Event::JoystickButtonEvent::joystickId)
+	   .def_readonly("button", &sf::Event::JoystickButtonEvent::button)
+	   
+	   ,class_<sf::Event::TouchEvent>("event-touch-event")
+	   .def_readonly("x-touch-event", &sf::Event::TouchEvent::x)
+	   .def_readonly("y-touch-event", &sf::Event::TouchEvent::y)
+	   
+	   ,class_<sf::Event::SensorEvent>("event-sensor-event")
+	   .def_readonly("x-sensor-event", &sf::Event::SensorEvent::x)
+	   .def_readonly("y-sensor-event", &sf::Event::SensorEvent::y)
+	   .def_readonly("z-sensor-event", &sf::Event::SensorEvent::z)
+	   
+	   
+	   
 	   //FIXME: All the other event types.
 	 ];
     }
